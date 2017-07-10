@@ -120,16 +120,17 @@
                     data:    dataModel
                 });
 
-                // Everything was a success!
-                request.then(function then(response) {
-                    defer.resolve(response.data.data);
-                });
 
-                // Something went wrong.
-                request.error(function error() {
-                    defer.reject();
-                });
-
+                request.then(
+                    // Everything was a success!
+                    function(response) {
+                        defer.resolve(response.data.data);
+                    },
+                    // Something went wrong.
+                    function error() {
+                        defer.reject();
+                    }
+                );
             };
 
             reader.readAsDataURL(imageData);
